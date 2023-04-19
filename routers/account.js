@@ -8,7 +8,7 @@ const router = new express.Router()
 // a user might have multiple accounts of the same type 
 router.post('/api/clients/me/accounts/', auth, async (req, res) => {
     try {
-      const account = await Account.create({userid: req.user.id})
+      const account = await Account.create({userid: req.user.id, type: req.body.type})
       return res.status(201).send({account})
     } catch (err) {
       return res.status(400).json(err)
